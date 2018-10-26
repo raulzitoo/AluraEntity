@@ -16,6 +16,7 @@ namespace entityApp
         }
 
         public virtual DbSet<Produto> Produtos { get; set; }
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

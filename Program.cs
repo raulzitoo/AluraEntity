@@ -12,9 +12,37 @@ namespace entityApp
         {
             //GravarUsandoAdoNet();
              GravarUsandoEntity();
-                     }
+           // RecuperandoDados();
+           // DeletarDados();
+           // RecuperandoDados();
+        }
 
-       
+        private static void DeletarDados()
+        {
+            using(var repo = new LojaContext()){
+                IList<Produto> produtos = repo.Produtos.ToList();
+
+                foreach (var produto in produtos)
+                {
+                    repo.Remove(produto);
+                }
+                repo.SaveChanges();
+            }
+            
+        }
+
+        private static void RecuperandoDados()
+        {
+           using(var repo = new LojaContext())
+           {
+               IList<Produto> produtos = repo.Produtos.ToList();
+                Console.Write("Existem {0} Produtos",produtos.Count);
+               foreach (var produto in produtos)
+               {
+                   Console.WriteLine(produto.Nome);
+               }
+           }
+        }
 
         private static void GravarUsandoEntity()
         {
