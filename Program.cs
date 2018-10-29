@@ -11,10 +11,24 @@ namespace entityApp
         static void Main(string[] args)
         {
             //GravarUsandoAdoNet();
-             GravarUsandoEntity();
-           // RecuperandoDados();
+            // GravarUsandoEntity();
+            //RecuperandoDados();
            // DeletarDados();
-           // RecuperandoDados();
+           //RecuperandoDados();
+           //AlterarDados();
+           RecuperandoDados();
+        }
+
+        private static void AlterarDados()
+        {
+            using( var repo = new LojaContext()){
+                IList<Produto> produtos = repo.Produtos.ToList();
+                foreach (var produto in produtos)
+                {
+                    produto.Nome += "- Editado";
+                }
+                repo.SaveChanges();
+            }
         }
 
         private static void DeletarDados()
